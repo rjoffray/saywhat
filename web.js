@@ -25,8 +25,10 @@ app.get('/', function(request, response) {
     
     connection.query('SELECT * from daily_quotes', function(err, rows, fields) {
       if (err) throw err;
-     response.send('Hello ');
+     //response.send('Hello ');
       //console.log("Ok");
+      var json = JSON.stringify(rows);
+      console.log(json);
     });
     
     connection.end();
