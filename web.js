@@ -34,7 +34,7 @@ app.configure(function() {
 
 
 
-app.get('/', function(request, response) {
+app.get('/quotes', function(request, response) {
   
     var hasPerms = true;
     if(hasPerms){
@@ -61,7 +61,7 @@ app.get('/', function(request, response) {
       
       connection.end();
     }else{
-      response.redirect('/login');
+      app.get('/login');
       
     }
 
