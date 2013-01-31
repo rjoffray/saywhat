@@ -9,17 +9,26 @@ var date = new Date();
 
 // app init
 var app = express.createServer(express.logger());
+app.configure(function() {
 
-app.use(express.static(__dirname + '/public'));
-app.set('views', __dirname + '/views')
-app.set('view engine','jade');
-app.set('view options', { 
-    locals: { 
-        scripts: ['js/jquery-183.js','js/jsrender.js','main.js'],
-        styles: ['css/reset.css','css/main.less']  
-    },
-    pretty: true 
+    app.use(app.router);
+    app.use(express.static(__dirname + '/public'));
+    app.set('views', __dirname + '/views')
+    app.set('view engine','jade');
+    app.set('view options', { 
+        locals: { 
+            scripts: ['js/jquery-183.js','js/jsrender.js','main.js'],
+            styles: ['css/reset.css','css/main.less']  
+        },
+        pretty: true 
+    });
+    app.use(express.errorHandler({
+        dumpExceptions: true,
+        showStack: true
+    }));
+
 });
+
 
 app.get("*.less", function(req, res) {
     var path = __dirname + req.url;
