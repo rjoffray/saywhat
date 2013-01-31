@@ -15,7 +15,8 @@ app.set('view options', {
     locals: { 
         scripts: ['js/jquery-183.js','js/jsrender.js'],
         styles: ['css/reset.css','css/main.css?t=' + date.getTime()]  
-    } 
+    },
+    pretty: true 
 });
 app.get('/', function(request, response) {
     
