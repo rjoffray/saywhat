@@ -42,15 +42,17 @@ app.get('/', function(request, response) {
     
     connection.end();
     
-    	connection.query('SELECT * from daily_quotes', function(err, rows, fields) {
+    response.render('index.jade',
+	    {
+	       title: 'What\'s said in the office  ... stays in the office'    
+	    }
+	 );
+	connection.query('SELECT * from daily_quotes', function(err, rows, fields) {
 		if (err) throw err;
 
-		response.render('index.jade',{
-			title:"",
-			"quotes":rows
-			};
-	 );
-
+		var tmplData = new Object;
+		tmpData.quotes = rows;
+		tmplData.title = "What's said in the office  ... stays in the office";
 		
 
 	});
