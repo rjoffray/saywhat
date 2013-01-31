@@ -2,4 +2,4 @@ ul#quotesList
   each val,key in rows
     li  #{val.quoted} said <i>"#{val.quote}"</i> 
       if(val.recipient != "")
-        | to #{val.recipient}
+        span to #{val.recipient} 

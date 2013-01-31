@@ -1,10 +1,12 @@
 #quotesList{
   list-style-type:none;
-  li{
-    height: 3em;
-    border: 1px solid #dedede;
-    i{
+
+}
+#quotesList li{
+
+    border-bottom: 1px solid #dedede;
+    padding: 10px;
+}
+#quotesList i{
       font-style: italic;
-    }
-  }
 }
