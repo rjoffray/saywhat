@@ -3,3 +3,5 @@
 {"ts":1359656120016,"patch":[[{"diffs":[[0,"\n  list-"],[1,"style-"],[0,"type:non"]],"start1":12,"start2":12,"length1":16,"length2":22}]],"length":38,"saved":false}
 {"ts":1359656130534,"patch":[[{"diffs":[[0,"ype:"],[-1,"non"],[1,"circl"],[0,"e;\n}"]],"start1":27,"start2":27,"length1":11,"length2":13}]],"length":40,"saved":false}
 {"contributors":[],"silentsave":false,"ts":1359656834138,"patch":[[{"diffs":[[0,"ype:"],[-1,"circl"],[1,"non"],[0,"e;\n}"]],"start1":27,"start2":27,"length1":13,"length2":11}]],"length":38,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1359659687455,"patch":[[{"diffs":[[0,"e:none;\n"],[1,"  li{\n    height: 3em;\n    border: 1px solid #dedede;\n  }\n"],[0,"}"]],"start1":29,"start2":29,"length1":9,"length2":67}]],"length":96,"saved":false}
+{"ts":1359659738973,"patch":[[{"diffs":[[0,"dedede;\n"],[1,"    i{\n      font-style: italic;\n    }\n"],[0,"  }\n}"]],"start1":83,"start2":83,"length1":13,"length2":52}]],"length":135,"saved":false}
