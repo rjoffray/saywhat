@@ -36,30 +36,30 @@ app.configure(function() {
 
 app.get('/', function(request, response) {
   
-    var hasPerms = false
+    var hasPerms = false;
     if(hasPerms){
-    var connection = mysql.createConnection({
-      host     : '216.145.5.210',
-      user     : 'vdb',
-      password : 'Password1',
-      database : 'virtuoso_technology',
-      insecureAuth: true
-    });
-    
-    connection.connect();
-    
-  connection.query('SELECT * from daily_quotes', function(err, rows, fields) {
-    if (err) throw err;
-    console.log(JSON.stringify(rows[0]));
-    response.render('index.jade',
-      {
-         title: 'What\'s said in the office  ... stays in the office', rows: rows    
-      }
-    );
-  
-  });
-    
-    connection.end();
+      var connection = mysql.createConnection({
+        host     : '216.145.5.210',
+        user     : 'vdb',
+        password : 'Password1',
+        database : 'virtuoso_technology',
+        insecureAuth: true
+      });
+      
+        connection.connect();
+        
+      connection.query('SELECT * from daily_quotes', function(err, rows, fields) {
+        if (err) throw err;
+        console.log(JSON.stringify(rows[0]));
+        response.render('index.jade',
+          {
+             title: 'What\'s said in the office  ... stays in the office', rows: rows    
+          }
+        );
+      
+      });
+      
+      connection.end();
     }else{
       response.writeHead(302, {
         'Location': '/login'
