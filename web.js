@@ -13,7 +13,7 @@ app.set('views', __dirname + '/views')
 app.set('view engine','jade');
 app.set('view options', { 
     locals: { 
-        scripts: ['js/jquery-183.js','js/jsrender.js'],
+        scripts: ['js/jquery-183.js','js/jsrender.js','main.js'],
         styles: ['css/reset.css','css/main.css?t=' + date.getTime()]  
     },
     pretty: true 
@@ -28,7 +28,6 @@ app.get('/', function(request, response) {
 //       response.send("Hello "+v);
 //    });
 
-/*
     var connection = mysql.createConnection({
       host     : '216.145.5.210',
       user     : 'vdb',
@@ -39,23 +38,22 @@ app.get('/', function(request, response) {
     
     connection.connect();
     
-    connection.query('SELECT * from daily_quotes', function(err, rows, fields) {
-      if (err) throw err;
-     //response.send('Hello ');
-      //console.log("Ok");
-      var json = JSON.stringify(rows);
-      //response.send(json);
-    });
+
     
     connection.end();
-*/
     
-    response.render('index.jade',
-    {
-       title: 'What\'s said in the office  ... stays in the office'    
-    }
-  );
-  
+    	connection.query('SELECT * from daily_quotes', function(err, rows, fields) {
+		if (err) throw err;
+
+		var tmplData = new Object;
+		tmpData.quotes = rows;
+		tmplData.title = "What's said in the office  ... stays in the office";
+		response.render('index.jade',tmplData);
+	 );
+
+		
+
+	});
 });
 
 

@@ -11,7 +11,7 @@ html(lang='en')
 
     script(id="quoteTmpl",type="text/x-jsrender")
       | 
-      | <li class="quote"></li>
+      | {{for quotes}}<li class="quote">{{:quote}}</li>{{/for}}
       | 
 
   body!= body
