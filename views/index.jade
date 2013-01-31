@@ -1,3 +1,5 @@
 ul#quotesList
   each val,key in rows
-    li  #{val.id}: #{val.quote}
+    li  #{val.quoted} said <i>"#{val.quote}"</i> 
+      if(val.recipient != "")
+        | to #{val.recipient}
