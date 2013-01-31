@@ -61,7 +61,7 @@ app.get('/quotes', function(request, response) {
       
       connection.end();
     }else{
-      app.get('/login');
+      response.redirect('/login');
       
     }
 
