@@ -18,7 +18,7 @@ app.get('/', function(request, response) {
       user     : 'vdb',
       password : 'Password1',
       database : 'virtuoso_technology',
-      insecureAuth: true
+      insecureAuth: false
     });
     
     connection.connect();
