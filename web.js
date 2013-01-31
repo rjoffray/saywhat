@@ -45,10 +45,10 @@ app.get('/', function(request, response) {
     	connection.query('SELECT * from daily_quotes', function(err, rows, fields) {
 		if (err) throw err;
 
-		var tmplData = new Object;
-		tmpData.quotes = rows;
-		tmplData.title = "What's said in the office  ... stays in the office";
-		response.render('index.jade',tmplData);
+		response.render('index.jade',{
+			title:"",
+			quotes:rows
+			};
 	 );
 
 		
