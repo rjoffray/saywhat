@@ -19,15 +19,7 @@ app.set('view options', {
     pretty: true 
 });
 app.get('/', function(request, response) {
-    
-    
-    
-//    var redis  = require('redis-url').connect(process.env.REDISTOGO_URL);
-//    redis.set('firstname', 'Richard');
-//    redis.get('firstname', function(e,v){
-//       response.send("Hello "+v);
-//    });
-
+  
     var connection = mysql.createConnection({
       host     : '216.145.5.210',
       user     : 'vdb',
@@ -38,18 +30,16 @@ app.get('/', function(request, response) {
     
     connection.connect();
     
-    connection.query('SELECT * from daily_quotes', function(err, rows, fields) {
-      if (err) throw err;
-     //response.send('Hello ');
-      //console.log("Ok");
-      var json = JSON.stringify(rows);
-      response.render('index.jade',
-		    {
-		       title: 'What\'s said in the office  ... stays in the office', rows: rows    
-		    }
-		  );
-      //response.send(json);
-    });
+  connection.query('SELECT * from daily_quotes', function(err, rows, fields) {
+    if (err) throw err;
+  
+    response.render('index.jade',
+      {
+         title: 'What\'s said in the office  ... stays in the office', rows: rows    
+      }
+      );
+  
+  });
     
     connection.end();
     

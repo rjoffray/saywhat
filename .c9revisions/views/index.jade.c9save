@@ -1,0 +1,2 @@
+{"ts":1359654166266,"silentsave":true,"restoring":false,"patch":[[{"diffs":[[1,"ul#quotesList\n  each val,key in rows\n    li  #{val.quote}"]],"start1":0,"start2":0,"length1":0,"length2":57}]],"length":57}
+{"contributors":[],"silentsave":false,"ts":1359654246364,"patch":[[{"diffs":[[0,"\n    li "],[1," #{val.id}:"],[0," #{val.q"]],"start1":36,"start2":36,"length1":16,"length2":27}]],"length":68,"saved":false}
