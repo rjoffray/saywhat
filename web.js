@@ -28,6 +28,7 @@ app.get('/', function(request, response) {
 //       response.send("Hello "+v);
 //    });
 
+/*
     var connection = mysql.createConnection({
       host     : '216.145.5.210',
       user     : 'vdb',
@@ -47,12 +48,13 @@ app.get('/', function(request, response) {
     });
     
     connection.end();
+*/
     
     response.render('index.jade',
-	    {
-	       title: 'What\'s said in the office  ... stays in the office'    
-	    }
-	 );
+    {
+       title: 'What\'s said in the office  ... stays in the office'    
+    }
+  );
   
 });
 
