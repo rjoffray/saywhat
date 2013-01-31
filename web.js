@@ -1,6 +1,7 @@
 var express = require('express');
 var request = require('request');
 var mysql   = require('mysql');
+var less    = require('less');
 var app = express.createServer(express.logger());
 
 var date = new Date();
@@ -14,11 +15,11 @@ app.set('view engine','jade');
 app.set('view options', { 
     locals: { 
         scripts: ['js/jquery-183.js','js/jsrender.js','main.js'],
-        styles: ['css/reset.css','css/main.css?t=' + date.getTime()]  
+        styles: ['css/reset.less','css/main.less?t=' + date.getTime()]  
     },
     pretty: true 
 });
-
+less.render( __dirname + '/css/main.less');
 
 
 app.get('/', function(request, response) {
