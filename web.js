@@ -61,11 +61,8 @@ app.get('/', function(request, response) {
       
       connection.end();
     }else{
-      response.writeHead(302, {
-        'Location': '/login'
-        //add other headers here...
-      });
-      response.end();
+      response.redirect('/login');
+      
     }
 
 });
