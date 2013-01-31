@@ -18,7 +18,7 @@ app.set('view options', {
     } 
 });
 app.get('/', function(request, response) {
-    //response.send('Hello ');
+    response.send('Hello man');
     
     
 //    var redis  = require('redis-url').connect(process.env.REDISTOGO_URL);
@@ -49,7 +49,7 @@ app.get('/', function(request, response) {
     connection.end();
 */
     
-    res.render('index.jade',
+    response.render('index.jade',
     {
        title: 'What\'s said in the office  ... stays in the office'    
     }
