@@ -18,14 +18,17 @@ app.get('/', function(request, response) {
       user     : 'vdb',
       password : 'Password1',
       database : 'virtuoso_technology',
+      insecureAuth: true
     });
     
     connection.connect();
     
     connection.query('SELECT * from daily_quotes', function(err, rows, fields) {
       if (err) throw err;
-    
-      console.log("Ok");
+     //response.send('Hello ');
+      //console.log("Ok");
+      var json = JSON.stringify(rows);
+      response.send(json);
     });
     
     connection.end();
