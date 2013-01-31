@@ -47,7 +47,7 @@ app.get('/', function(request, response) {
 
 		response.render('index.jade',{
 			title:"",
-			quotes:rows
+			"quotes":rows
 			};
 	 );
 
