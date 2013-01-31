@@ -33,6 +33,7 @@ app.configure(function() {
 
 
 
+
 app.get('/', function(request, response) {
   
     var connection = mysql.createConnection({
