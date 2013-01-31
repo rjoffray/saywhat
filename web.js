@@ -17,7 +17,7 @@ app.configure(function() {
     app.set('view engine','jade');
     app.set('view options', { 
         locals: { 
-            scripts: ['js/jquery-183.js','js/jsrender.js','main.js','less.js'],
+            scripts: ['js/jquery-183.js','js/jsrender.js','js/main.js','js/less.js'],
             less: ['css/main.less'],
             styles: ['css/reset.css']  
         },
