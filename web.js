@@ -18,7 +18,7 @@ app.configure(function() {
     app.set('view options', { 
         locals: { 
             scripts: ['js/jquery-183.js','js/jsrender.js','main.js'],
-            styles: ['css/reset.css','css/main.less']  
+            styles: ['css/reset.css','css/main.css']  
         },
         pretty: true 
     });
@@ -30,17 +30,7 @@ app.configure(function() {
 });
 
 
-app.get("*.less", function(req, res) {
-    var path = __dirname + req.url;
-    fs.readFile(path, "utf8", function(err, data) {
-    if (err) throw err;
-    less.render(data, function(err, css) {
-            if (err) throw err;
-            res.header("Content-type", "text/css");
-            res.send(css);
-    });
-    });
-});
+
 
 app.get('/', function(request, response) {
   
