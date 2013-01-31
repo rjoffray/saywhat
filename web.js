@@ -18,6 +18,9 @@ app.set('view options', {
     },
     pretty: true 
 });
+
+
+
 app.get('/', function(request, response) {
   
     var connection = mysql.createConnection({
@@ -37,14 +40,12 @@ app.get('/', function(request, response) {
       {
          title: 'What\'s said in the office  ... stays in the office', rows: rows    
       }
-      );
+    );
   
   });
     
     connection.end();
-    
 
-  
 });
 
 
