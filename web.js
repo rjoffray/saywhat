@@ -36,20 +36,24 @@ app.get('/', function(request, response) {
       insecureAuth: true
     });
     
-		connection.connect();
-		
-		
-		
-		
-		
-		connection.query('SELECT * from daily_quotes', function(err, rows, fields) {
-	  	if (err) throw err;
-	
-	  	response.render('index.jade',{
-	    	title:"What's said in the office  ... stays in the office"
-	    };
-	  });
-		connection.end();
+    connection.connect();
+    
+    connection.query('SELECT * from daily_quotes', function(err, rows, fields) {
+      if (err) throw err;
+     //response.send('Hello ');
+      //console.log("Ok");
+      var json = JSON.stringify(rows);
+      //response.send(json);
+    });
+    
+    connection.end();
+    
+    response.render('index.jade',
+	    {
+	       title: 'What\'s said in the office  ... stays in the office'    
+	    }
+	 );
+  
 });
 
 
