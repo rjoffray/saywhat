@@ -36,7 +36,7 @@ app.configure(function() {
 
 app.get('/', function(request, response) {
   
-    var hasPerms = false;
+    var hasPerms = true;
     if(hasPerms){
       var connection = mysql.createConnection({
         host     : '216.145.5.210',
