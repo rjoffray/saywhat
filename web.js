@@ -36,6 +36,8 @@ app.configure(function() {
 
 app.get('/', function(request, response) {
   
+    var hasPerms = false
+    if(hasPerms){
     var connection = mysql.createConnection({
       host     : '216.145.5.210',
       user     : 'vdb',
@@ -58,6 +60,13 @@ app.get('/', function(request, response) {
   });
     
     connection.end();
+    }else{
+      response.writeHead(302, {
+        'Location': '/login'
+        //add other headers here...
+      });
+      response.end();
+    }
 
 });
 
