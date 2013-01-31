@@ -61,7 +61,13 @@ app.get('/', function(request, response) {
 
 });
 
-
+app.get('/login', function(request, response) {
+  response.render('login.jade',
+      {
+         title: 'Login: What\'s said in the office  ... stays in the office'    
+      }
+    );
+});
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
