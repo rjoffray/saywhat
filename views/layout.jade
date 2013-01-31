@@ -2,10 +2,13 @@
 html(lang='en')
   head
     title= title
+    -for lessfile in less
+      link(rel='stylesheet/less',type='text/css',href=lessfile)
     -for script in scripts
       script(type='text/javascript',src=script)
     -for style in styles
       link(rel='stylesheet',type='text/css',href=style)
+
     link(href='http://fonts.googleapis.com/css?family=Text+Me+One',rel='stylesheet',type='text/css')
     link(href='http://fonts.googleapis.com/css?family=Antic+Slab',rel='stylesheet',type='text/css')
 

@@ -17,8 +17,9 @@ app.configure(function() {
     app.set('view engine','jade');
     app.set('view options', { 
         locals: { 
-            scripts: ['js/jquery-183.js','js/jsrender.js','main.js'],
-            styles: ['css/reset.css','css/main.css']  
+            scripts: ['js/jquery-183.js','js/jsrender.js','main.js','less.js'],
+            less: ['css/main.less'],
+            styles: ['css/reset.css']  
         },
         pretty: true 
     });
@@ -46,7 +47,7 @@ app.get('/', function(request, response) {
     
   connection.query('SELECT * from daily_quotes', function(err, rows, fields) {
     if (err) throw err;
-  
+    console.log(JSON.stringify(rows[0]));
     response.render('index.jade',
       {
          title: 'What\'s said in the office  ... stays in the office', rows: rows    

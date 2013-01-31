@@ -10,3 +10,9 @@
 #quotesList i{
       font-style: italic;
 }
+.note{
+  font-size: .8em;
+  background-color:#dedede;
+  margin-top:4px;
+  padding: 3px;
+}

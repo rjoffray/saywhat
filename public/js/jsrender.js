@@ -1034,5 +1034,3 @@
 	$viewsDelimiters();
 
 })(this, this.jQuery);
-Window size: x 
-Viewport size: x
