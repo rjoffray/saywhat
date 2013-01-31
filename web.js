@@ -3,6 +3,20 @@ var request = require('request');
 var mysql   = require('mysql');
 var app = express.createServer(express.logger());
 
+var date = new Date();
+
+// app init
+var app = express.createServer(express.logger());
+
+app.use(express.static(__dirname + '/public'));
+app.set('views', __dirname + '/views');
+app.set('view engine','jade');
+app.set('view options', { 
+    locals: { 
+        scripts: ['js/jquery-183.js','js/jsrender.js'],
+        styles: ['css/reset.css','css/main.css?t=' + date.getTime()]  
+    } 
+});
 app.get('/', function(request, response) {
     //response.send('Hello ');
     
@@ -28,10 +42,17 @@ app.get('/', function(request, response) {
      //response.send('Hello ');
       //console.log("Ok");
       var json = JSON.stringify(rows);
-      response.send(json);
+      //response.send(json);
     });
     
     connection.end();
+    
+    res.render('index.jade',
+    {
+       title: 'What\'s said in the office  ... stays in the office'    
+    }
+  );
+  
 });
 
 
