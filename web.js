@@ -1,18 +1,34 @@
 var express = require('express');
 var request = require('request');
-
+var mysql   = require('mysql');
 var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
-  //response.send('Hello ');
+    //response.send('Hello ');
+    
+    
+//    var redis  = require('redis-url').connect(process.env.REDISTOGO_URL);
+//    redis.set('firstname', 'Richard');
+//    redis.get('firstname', function(e,v){
+//       response.send("Hello "+v);
+//    });
 
-
-   var redis  = require('redis-url').connect(process.env.REDISTOGO_URL);
-   redis.set('firstname', 'Richard');
-   redis.get('firstname', function(e,v){
-       response.send("Hello "+v);
-   });
-
+    var connection = mysql.createConnection({
+      host     : '216.145.5.210',
+      user     : 'vdb',
+      password : 'Password1',
+      database : 'virtuoso_technology',
+    });
+    
+    connection.connect();
+    
+    connection.query('SELECT * from daily_quotes', function(err, rows, fields) {
+      if (err) throw err;
+    
+      console.log("Ok");
+    });
+    
+    connection.end();
 });
 
 
