@@ -27,6 +27,7 @@ app.get('/', function(request, response) {
 //       response.send("Hello "+v);
 //    });
 
+/*
     var connection = mysql.createConnection({
       host     : '216.145.5.210',
       user     : 'vdb',
@@ -46,6 +47,7 @@ app.get('/', function(request, response) {
     });
     
     connection.end();
+*/
     
     res.render('index.jade',
     {
