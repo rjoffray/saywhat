@@ -22,7 +22,7 @@ app.get('/', function(request, response) {
     
     connection.connect();
     
-    connection.query('SELECT * from dailey_quotes', function(err, rows, fields) {
+    connection.query('SELECT * from daily_quotes', function(err, rows, fields) {
       if (err) throw err;
     
       console.log("Ok");
