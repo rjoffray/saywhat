@@ -18,7 +18,7 @@ app.set('view options', {
     } 
 });
 app.get('/', function(request, response) {
-    response.send('Hello man');
+    
     
     
 //    var redis  = require('redis-url').connect(process.env.REDISTOGO_URL);
