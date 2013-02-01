@@ -11,7 +11,7 @@ app.configure(function() {
 
     app.use(app.router);
     app.use(express.static(__dirname + '/public'));
-    app.set('views', __dirname + '/views')
+    app.set('views', __dirname + '/views');
     app.set('view engine','jade');
     app.set('hasPerms',false);
     app.set('view options', { 
@@ -64,7 +64,7 @@ app.get('/', function(req, res) {
     }
 });
 app.get('/quotes', function(request, response) {
-  console.log(request.params.username)
+  console.log(request.params.username);
     if(app.get('hasPerms')){
 
       var connection = mysql.createConnection({
@@ -97,7 +97,7 @@ app.get('/quotes', function(request, response) {
 });
 
 app.get('/login', function(request, response) {
-  console.log(request.params.username)
+  console.log(request.params.username);
   response.render('login.jade',
       {
          title: 'Login: What\'s said in the office  ... stays in the office'    
