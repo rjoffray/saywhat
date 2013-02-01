@@ -31,30 +31,6 @@ app.configure(function() {
 
 
 app.get('/', function(req, res) {
-//    var data = "I am the clear text data";
-//    console.log('Original cleartext: ' + data);
-//    var algorithm = 'aes-128-cbc';
-//    var key = 'mysecretkey';
-//    var clearEncoding = 'utf8';
-//    var cipherEncoding = 'hex';
-//    //If the next line is uncommented, the final cleartext is wrong.
-//    //cipherEncoding = 'base64';
-//    var cipher = crypto.createCipher(algorithm, key);
-//    var cipherChunks = [];
-//    cipherChunks.push(cipher.update(data, clearEncoding, cipherEncoding));
-//    cipherChunks.push(cipher.final(cipherEncoding));
-//    console.log(cipherEncoding + ' ciphertext: ' + cipherChunks.join(''));
-//    var decipher = crypto.createDecipher(algorithm, key);
-//    var plainChunks = [];
-//    for (var i = 0;i < cipherChunks.length;i++) {
-//      plainChunks.push(decipher.update(cipherChunks[i], cipherEncoding, clearEncoding));
-//
-//    }
-//    plainChunks.push(decipher.final(clearEncoding));
-//    console.log("UTF8 plaintext deciphered: " + plainChunks.join(''));
-
-
-
 
 
 //var iv = "v4645jS75BWw8PjJmRmXYQ==";
@@ -66,32 +42,11 @@ app.get('/', function(req, res) {
 //var decipher = crypto.createDecipheriv('AES-256-CBC', key,iv);   
 //var plain = decipher.update(encrypted, 'base64', 'utf8') + decipher.final('utf8');
  
-var result = cryptoTest(req.params.message, 'GO8FzK17iPYKE2Kt', 'E2I51NEwsC3RdSNl', 'binary');
-//console.log(result.decrypted);
-function cryptoTest(data, key, iv, format) {
-  var cipher = crypto.createCipheriv('aes-128-cbc', key, iv);
-	var cipherChunks = [];
-	cipherChunks.push(cipher.update(data, 'utf8', format));
-	cipherChunks.push(cipher.final());
 
-	var decipher = crypto.createDecipheriv('aes-128-cbc', key, iv);
-	var plainChunks = [];
-	for (var i = 0;i < cipherChunks.length;i++) {
-    plainChunks.push(decipher.update(cipherChunks[i], format, 'utf8'));
-	}
-	plainChunks.push(decipher.final());
+ 
+ 
+ 
 
-	return {
-    "encrypted": Base64.encode(cipherChunks.join('')),
-    "decrypted": plainChunks.join('')
-	};
-}
- 
- 
- 
- 
- 
-console.log(plain);
     // put check here for credentials
     if(req.params.username == "richard"){
       app.set('hasPerms',true);
