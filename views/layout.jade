@@ -1,7 +1,7 @@
 !!! 5
 html(lang='en')
   head
-    title= title
+    title = title
     -for lessfile in less
       link(rel='stylesheet/less',type='text/css',href=lessfile)
     -for script in scripts
@@ -11,11 +11,5 @@ html(lang='en')
 
     link(href='http://fonts.googleapis.com/css?family=Text+Me+One',rel='stylesheet',type='text/css')
     link(href='http://fonts.googleapis.com/css?family=Antic+Slab',rel='stylesheet',type='text/css')
-
-    script(id="quoteTmpl",type="text/x-jsrender")
-      | 
-      | {{for quotes}}<li class="quote">{{:quote}}</li>{{/for}}
-      | 
-
   body!= body
     

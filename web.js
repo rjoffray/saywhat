@@ -1,8 +1,6 @@
 var express = require('express');
-var request = require('request');
 var mysql   = require('mysql');
-var less    = require('less');
-var fs = require("fs");
+var crypto = require('crypto');
 var app = express.createServer(express.logger());
 
 var date = new Date();
@@ -15,10 +13,11 @@ app.configure(function() {
     app.use(express.static(__dirname + '/public'));
     app.set('views', __dirname + '/views')
     app.set('view engine','jade');
+    app.set('hasPerms',false);
     app.set('view options', { 
         locals: { 
             scripts: ['js/jquery-183.js','js/jsrender.js','js/main.js','js/less.js'],
-            less: ['css/main.less'],
+            less: ['css/main.less?d='+date.getTime()],
             styles: ['css/reset.css']  
         },
         pretty: true 
@@ -31,13 +30,43 @@ app.configure(function() {
 });
 
 
-
-
-
-app.get('/quotes', function(request, response) {
+app.get('/', function(req, res) {
+//    var data = "I am the clear text data";
+//    console.log('Original cleartext: ' + data);
+//    var algorithm = 'aes-128-cbc';
+//    var key = 'mysecretkey';
+//    var clearEncoding = 'utf8';
+//    var cipherEncoding = 'hex';
+//    //If the next line is uncommented, the final cleartext is wrong.
+//    //cipherEncoding = 'base64';
+//    var cipher = crypto.createCipher(algorithm, key);
+//    var cipherChunks = [];
+//    cipherChunks.push(cipher.update(data, clearEncoding, cipherEncoding));
+//    cipherChunks.push(cipher.final(cipherEncoding));
+//    console.log(cipherEncoding + ' ciphertext: ' + cipherChunks.join(''));
+//    var decipher = crypto.createDecipher(algorithm, key);
+//    var plainChunks = [];
+//    for (var i = 0;i < cipherChunks.length;i++) {
+//      plainChunks.push(decipher.update(cipherChunks[i], cipherEncoding, clearEncoding));
+//
+//    }
+//    plainChunks.push(decipher.final(clearEncoding));
+//    console.log("UTF8 plaintext deciphered: " + plainChunks.join(''));
+    // put check here for credentials
+    if(req.params.username == "richard"){
+      app.set('hasPerms',true);
+    }
   
-    var hasPerms = false;
-    if(hasPerms){
+    if(app.get('hasPerms')){
+      res.redirect('/quotes');
+    }else{
+      res.redirect('/login');
+    }
+});
+app.get('/quotes', function(request, response) {
+  console.log(request.params.username)
+    if(app.get('hasPerms')){
+
       var connection = mysql.createConnection({
         host     : '216.145.5.210',
         user     : 'vdb',
@@ -68,6 +97,7 @@ app.get('/quotes', function(request, response) {
 });
 
 app.get('/login', function(request, response) {
+  console.log(request.params.username)
   response.render('login.jade',
       {
          title: 'Login: What\'s said in the office  ... stays in the office'    
