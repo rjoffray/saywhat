@@ -61,16 +61,16 @@ app.get('/', function(req, res) {
 
     assert.equal(txt, plaintext, 'encryption and decryption with key and iv');
     
-    console.log("iv-base64: "+ iv.toString('base64'));
-    console.log("key-base64: "+ key.toString('base64'));
-    console.log("iv-hex: "+ iv.toString('hex'));
-    console.log("key-hex: "+ key.toString('hex'));
-    console.log("original: "+plaintext);
-
-    console.log("encoded: "+ciph);
-    console.log("decoded: "+txt);
-
-  return;
+    var out ="iv-base64: "+ iv.toString('base64')+"<br />";
+        out +="key-base64: "+ key.toString('base64')+"<br />";
+        out +="iv-hex: "+ iv.toString('hex')+"<br />";
+        out +="key-hex: "+ key.toString('hex')+"<br />";
+        out +="original: "+plaintext+"<br />";
+        out +="encoded: "+ciph+"<br />";
+        out +="decoded: "+txt+"<br />";
+        res.writeHeader(200, {"Content-Type": "text/html"});  
+        res.write(out);  
+        res.end();  return;
   
   
     // put check here for credentials
