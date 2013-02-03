@@ -1,7 +1,6 @@
 var express = require('express');
 var mysql   = require('mysql');
-var crypto = require('crypto');
-var assert = require('assert');
+
 var app = express.createServer(express.logger());
 
 var date = new Date();
@@ -32,13 +31,22 @@ app.configure(function() {
 
 
 app.get('/', function(req, res) {
-
-    // aes256 - iv 16-bit 
+    
+    var crypto = require('crypto');
+    var assert = require('assert');
+    
+    /* ***************************************************
+    rjoffray@saywhat:~/393971 (master) $ openssl enc -aes256 -k "encoding secret goes here" -P -md sha1 -a         
+    salt=ED8C48E7D528D3B2                                                                                          
+    key=0FF6DD60AED3434B5105BCAC5B2A6C96BC4F6B45FC67E98C4F98B3712CEA7B09                                           
+    iv =F00562191C6F24A5933AB9A9B0EB06AA
+    *******************************************************/
     
 
-    var iv = new Buffer('v4645jS75BWw8PjJmRmXYQ==', 'base64');
-    var key = new Buffer("LpAHsjmXvzsj7h84UEgRYoXV/U4viJClViRvfOOc/k8=", 'base64');
-    
+
+    var iv = new Buffer('8AViGRxvJKWTOrmpsOsGqg==', 'base64');
+    var key = new Buffer("D/bdYK7TQ0tRBbysWypslrxPa0X8Z+mMT5izcSzqewk=", 'base64');
+   
     var algo = "aes256";
     var plaintext   = "Damn you are good!!!!";
 
@@ -51,9 +59,12 @@ app.get('/', function(req, res) {
     var txt = decipher.update(ciph, 'base64', 'utf8');
     txt += decipher.final('utf8');
 
-    //assert.equal(txt, plaintext, 'encryption and decryption with key and iv');
-    console.log("iv: "+ iv.toString('base64'));
-    console.log("key: "+ key.toString('base64'));
+    assert.equal(txt, plaintext, 'encryption and decryption with key and iv');
+    
+    console.log("iv-base64: "+ iv.toString('base64'));
+    console.log("key-base64: "+ key.toString('base64'));
+    console.log("iv-hex: "+ iv.toString('hex'));
+    console.log("key-hex: "+ key.toString('hex'));
     console.log("original: "+plaintext);
 
     console.log("encoded: "+ciph);
