@@ -1,6 +1,7 @@
 var express = require('express');
 var mysql   = require('mysql');
 var crypto = require('crypto');
+var assert = require('assert');
 var app = express.createServer(express.logger());
 
 var date = new Date();
@@ -33,20 +34,24 @@ app.configure(function() {
 app.get('/', function(req, res) {
 
 
-//var iv = "v4645jS75BWw8PjJmRmXYQ==";
-//var key = "LpAHsjmXvzsj7h84UEgRYoXV/U4viJClViRvfOOc/k8=";
-//
-//var cipher = crypto.createCipheriv('AES-256-CBC', key,iv);  
-//var encrypted = cipher.update("test this text", 'utf8', 'base64') + cipher.final('base64');
-//
-//var decipher = crypto.createDecipheriv('AES-256-CBC', key,iv);   
-//var plain = decipher.update(encrypted, 'base64', 'utf8') + decipher.final('utf8');
- 
+var iv = "1234567812345678";
+var key = "0123456789abcd012345678901234567";
 
- 
- 
- 
+var algo = "aes256";
+var plaintext   = "Damn you are good!!!!";
 
+
+  var cipher = crypto.createCipheriv(algo, key, iv);
+  var ciph = cipher.update(plaintext, 'utf8', 'base64');
+  ciph += cipher.final('base64');
+
+  var decipher = crypto.createDecipheriv(algo, key, iv);
+  var txt = decipher.update(ciph, 'base64', 'utf8');
+  txt += decipher.final('utf8');
+
+  assert.equal(txt, plaintext, 'encryption and decryption with key and iv');
+
+console.log(txt);
     // put check here for credentials
     if(req.params.username == "richard"){
       app.set('hasPerms',true);

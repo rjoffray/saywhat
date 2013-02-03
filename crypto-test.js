@@ -171,9 +171,14 @@ app.configure('production', function(){
 app.use(express.bodyParser());
 
 // Routes
-var iv = Base64._utf8_encode(Base64.decode("v4645jS75BWw8PjJmRmXYQ=="));
-var key = Base64._utf8_encode(Base64.decode("LpAHsjmXvzsj7h84UEgRYoXV/U4viJClViRvfOOc/k8="));
-
+var iv = "v4645jS75BWw8PjJmRmXYQ==";
+var key = "LpAHsjmXvzsj7h84UEgRYoXV/U4viJClViRvfOOc/k8=";
+app.get('/', function(req, res){
+    var iv = "v4645jS75BWw8PjJmRmXYQ==";
+    var key = "LpAHsjmXvzsj7h84UEgRYoXV/U4viJClViRvfOOc/k8=";
+    console.log(key);
+    console.log(iv);
+});
 app.get('/binary/:message', function(req, res){
   var result = cryptoTest(req.params.message, key, iv, 'binary');
 	res.send(req.params.message + 
@@ -197,12 +202,12 @@ app.get('/base64/:message', function(req, res){
 });
 
 function cryptoTest(data, key, iv, format) {
-	var cipher = crypto.createCipheriv('aes-128-cbc', key, iv);
+	var cipher = crypto.createCipheriv('aes-192-cbc', key, iv);
 	var cipherChunks = [];
 	cipherChunks.push(cipher.update(data, 'utf8', format));
 	cipherChunks.push(cipher.final());
 
-	var decipher = crypto.createDecipheriv('aes-128-cbc', key, iv);
+	var decipher = crypto.createDecipheriv('aes-192-cbc', key, iv);
 	var plainChunks = [];
 	for (var i = 0;i < cipherChunks.length;i++) {
 	  plainChunks.push(decipher.update(cipherChunks[i], format, 'utf8'));
