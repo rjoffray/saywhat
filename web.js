@@ -33,25 +33,35 @@ app.configure(function() {
 
 app.get('/', function(req, res) {
 
+    // aes256 - iv 16-bit 
+    
 
-var iv = "1234567812345678";
-var key = "0123456789abcd012345678901234567";
+    var iv = new Buffer('v4645jS75BWw8PjJmRmXYQ==', 'base64');
+    var key = new Buffer("LpAHsjmXvzsj7h84UEgRYoXV/U4viJClViRvfOOc/k8=", 'base64');
+    
+    var algo = "aes256";
+    var plaintext   = "Damn you are good!!!!";
 
-var algo = "aes256";
-var plaintext   = "Damn you are good!!!!";
 
+    var cipher = crypto.createCipheriv(algo, key.toString('binary'), iv.toString('binary'));
+    var ciph = cipher.update(plaintext, 'utf8', 'base64');
+    ciph += cipher.final('base64');
+    
+    var decipher = crypto.createDecipheriv(algo, key.toString('binary'), iv.toString('binary'));
+    var txt = decipher.update(ciph, 'base64', 'utf8');
+    txt += decipher.final('utf8');
 
-  var cipher = crypto.createCipheriv(algo, key, iv);
-  var ciph = cipher.update(plaintext, 'utf8', 'base64');
-  ciph += cipher.final('base64');
+    //assert.equal(txt, plaintext, 'encryption and decryption with key and iv');
+    console.log("iv: "+ iv.toString('base64'));
+    console.log("key: "+ key.toString('base64'));
+    console.log("original: "+plaintext);
 
-  var decipher = crypto.createDecipheriv(algo, key, iv);
-  var txt = decipher.update(ciph, 'base64', 'utf8');
-  txt += decipher.final('utf8');
+    console.log("encoded: "+ciph);
+    console.log("decoded: "+txt);
 
-  assert.equal(txt, plaintext, 'encryption and decryption with key and iv');
-
-console.log(txt);
+  return;
+  
+  
     // put check here for credentials
     if(req.params.username == "richard"){
       app.set('hasPerms',true);
