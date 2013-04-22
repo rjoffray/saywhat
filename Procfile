@@ -1,1 +1,1 @@
-web: node crypto-test.js
+web: node web.js
